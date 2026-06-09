@@ -2,99 +2,82 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Gestão de Pátio JDF</title>
+    <title>Acesso - Gestão de Pátio JDF</title>
     <style>
-        body {
-            margin: 0; padding: 0;
-            background: radial-gradient(circle at top right, #0d1424 0%, #07090f 100%);
-            color: #cbd5e1;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh; display: flex; justify-content: center; align-items: center;
-        }
-
-        .login-box {
-            background: #000000;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(238, 77, 45, 0.1);
-            text-align: center;
-        }
-
+        /* DESIGN NEON EQUILIBRADO E TEMA SHOPEE XPRESS (LARANJA) */
+        body { margin: 0; font-family: 'Consolas', 'Courier New', monospace; background-color: #07090f; display: flex; justify-content: center; align-items: center; height: 100vh; color: #ee4d2d; }
+        .caixa-login { background: #0b101a; padding: 40px; border-radius: 12px; box-shadow: 0 0 25px rgba(238, 77, 45, 0.05); width: 350px; text-align: center; border: 1px solid rgba(238, 77, 45, 0.2); position: relative; overflow: hidden;}
+        .caixa-login::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #ee4d2d; box-shadow: 0 0 15px #ee4d2d; }
+       
+        /* O ESPAÇO RESERVADO PARA A LOGO (COM MEGA ZOOM DA ÚLTIMA ATUALIZAÇÃO) */
         .logo-shopee {
-            width: 100%; height: 60px;
+            width: 100%;
+            height: 60px;
+            margin: 20px auto 45px auto; /* Margem ajustada para dar espaço ao GIF */
             background-image: url('https://i.imgur.com/Z0lEejO.png');
-            background-size: contain; background-repeat: no-repeat; background-position: center;
-            margin-bottom: 10px; transform: scale(1.5);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: scale(4.0);
         }
 
-        .title { color: #94a3b8; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; font-weight: 600;}
-        .hub-name { color: #ee4d2d; font-size: 20px; font-weight: bold; letter-spacing: 1px; margin-bottom: 30px; text-shadow: 0 0 10px rgba(238, 77, 45, 0.4);}
-
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; font-size: 12px; color: #64748b; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px; }
-       
-        input[type="text"], select {
-            width: 100%; padding: 14px; font-size: 16px;
-            background: #0f172a; border: 1px solid #334155; border-radius: 6px;
-            color: #f8fafc; font-family: inherit; box-sizing: border-box; outline: none; transition: 0.3s;
+        /* ESPAÇO RESERVADO PARA O SEU GIF ANIMADO */
+        .mascote-gif {
+            width: 100%;
+            max-width: 130px; /* Altere aqui se quiser o cachorrinho maior ou menor */
+            height: auto;
+            margin: -10px auto 15px auto;
+            display: block;
         }
        
-        input[type="text"]:focus, select:focus { border-color: #ee4d2d; box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.2); }
-
-        .btn-login {
-            width: 100%; padding: 15px; margin-top: 10px;
-            background: transparent; color: #ee4d2d;
-            border: 2px solid #ee4d2d; border-radius: 6px;
-            font-size: 16px; font-weight: bold; cursor: pointer;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
-        }
+        h2 { margin: 0 0 25px 0; color: #fff; font-weight: 600; font-size: 14px; font-family: 'Segoe UI', sans-serif; letter-spacing: 2px; text-shadow: 0 0 10px rgba(238, 77, 45, 0.3); text-transform: uppercase;}
        
-        .btn-login:hover { background: #ee4d2d; color: #fff; box-shadow: 0 0 15px rgba(238, 77, 45, 0.5); }
-        .error-msg { color: #ef4444; font-size: 13px; margin-top: 15px; min-height: 20px; display: block; font-weight: 600;}
+        input, select { width: 100%; padding: 14px; margin: 10px 0; background: rgba(0,0,0,0.6); border: 1px solid rgba(238, 77, 45, 0.3); border-radius: 6px; box-sizing: border-box; font-size: 15px; color: #fff; outline: none; transition: all 0.3s ease; font-family: inherit;}
+        input::placeholder { color: #4a5568; }
+        input:focus, select:focus { border-color: #ee4d2d; box-shadow: 0 0 12px rgba(238, 77, 45, 0.2); background: rgba(238, 77, 45, 0.02); }
+       
+        select { font-weight: bold; text-transform: uppercase; color: #ee4d2d; text-align: center;}
+        option { background: #0b101a; color: #fff; }
+
+        .btn { width: 100%; padding: 14px; background: rgba(238, 77, 45, 0.1); color: #ee4d2d; border: 1px solid #ee4d2d; border-radius: 6px; font-family: 'Segoe UI', sans-serif; font-size: 15px; cursor: pointer; font-weight: bold; margin-top: 20px; transition: all 0.2s; letter-spacing: 1px; text-transform: uppercase;}
+        .btn:hover { background: #ee4d2d; color: #fff; box-shadow: 0 0 15px rgba(238, 77, 45, 0.6); }
     </style>
-
-    <!-- Firebase Compat SDK -->
+   
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
-    <div class="login-box">
-        <div class="logo-shopee"></div>
-        <div class="title">SISTEMA DE GESTÃO DE PÁTIO</div>
-        <div class="hub-name">📍 JUIZ DE FORA</div>
+    <script>
+        if (sessionStorage.getItem('usuarioLogado')) {
+            window.location.href = "painel.html";
+        }
+    </script>
 
-        <div class="input-group">
-            <label>NOME DO OPERADOR</label>
-            <input type="text" id="inputNome" placeholder="Digite seu nome..." autocomplete="off">
-        </div>
+    <div class="caixa-login">
+        <div id="formLogin">
+            <div class="logo-shopee"></div>
 
-        <div class="input-group">
-            <label>SELECIONE SEU POSTO</label>
-            <select id="selectLugar">
-                <option value="">-- Selecione --</option>
-                <option value="Admin">Painel de Controle (Admin)</option>
-                <!-- Mesas geradas pelo JS -->
-                <optgroup label="Mesas de Atendimento" id="grupoMesas"></optgroup>
-                <optgroup label="Retenção">
-                    <option value="Final de Fila 1">Final de Fila 1</option>
-                    <option value="Final de Fila 2">Final de Fila 2</option>
-                    <option value="Final de Fila 3">Final de Fila 3</option>
-                </optgroup>
+            <img src="mascote.gif" alt="Mascote Operação" class="mascote-gif" onerror="this.style.display='none'">
+           
+            <h2 id="statusNuvem" style="color: #f1c40f;">CONECTANDO...</h2>
+           
+            <select id="lugarLogin">
+                <option value="">Aguardando Servidor...</option>
             </select>
+           
+            <input type="password" id="senhaLogin" placeholder="Digite a Senha" required autocomplete="off" onkeypress="if(event.key === 'Enter') { event.preventDefault(); fazerLogin(); }">
+           
+            <button type="button" class="btn" onclick="fazerLogin()">ACESSAR PÁTIO</button>
         </div>
-
-        <button type="button" class="btn-login" onclick="fazerLogin()" id="btnAcessar">ACESSAR SISTEMA</button>
-        <span class="error-msg" id="msgErro"></span>
     </div>
 
     <script>
+        // TOTAL DE MESAS ATUALIZADO PARA 25
+        const TOTAL_DE_MESAS = 25;
+
         // ==========================================
-        // CONFIGURAÇÃO ATIVA: JUIZ DE FORA (jdf-gestao)
+        // CONFIGURAÇÃO ATIVA: JUIZ DE FORA
         // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyBJQUKw9P0X4f88m-2yOo2W-E1WTyaYzJc",
@@ -110,65 +93,134 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // Limpa o login anterior se o usuário acessou a tela de login
-        sessionStorage.clear();
+        let mesasOcupadas = [];
+        let mesasCarregadas = false;
 
-        // Gera as 25 mesas automaticamente no select
-        const grupoMesas = document.getElementById('grupoMesas');
-        for (let i = 1; i <= 25; i++) {
-            let option = document.createElement('option');
-            option.value = `Mesa ${i}`;
-            option.innerText = `Mesa ${i}`;
-            grupoMesas.appendChild(option);
-        }
+        db.ref('.info/connected').on('value', function(connectedSnap) {
+            if (connectedSnap.val() === true) {
+                let statusEl = document.getElementById('statusNuvem');
+                statusEl.innerText = "GESTÃO DE PÁTIO";
+                statusEl.style.color = "#fff";
+            }
+        });
 
-        function mostrarErro(msg) {
-            const el = document.getElementById('msgErro');
-            el.innerText = msg;
-            setTimeout(() => el.innerText = '', 4000);
+        db.ref('mesasOcupadas').on('value', (snapshot) => {
+            mesasOcupadas = snapshot.val() || [];
+            carregarMesasLivres();
+            mesasCarregadas = true;
+        }, (error) => {
+            console.warn("Regras do Firebase podem estar bloqueadas. Forçando exibição.", error);
+            carregarMesasLivres();
+            mesasCarregadas = true;
+        });
+
+        setTimeout(() => {
+            if(!mesasCarregadas) {
+                console.warn("Firebase demorou a responder. Forçando carregamento das mesas.");
+                carregarMesasLivres();
+            }
+        }, 3000);
+
+        function carregarMesasLivres() {
+            const selectLugar = document.getElementById('lugarLogin');
+            const valorAtual = selectLugar.value;
+           
+            selectLugar.innerHTML = '';
+           
+            let optionAdmin = document.createElement('option');
+            optionAdmin.value = 'Admin';
+            optionAdmin.text = '🔧 ACESSO ADMIN';
+            selectLugar.appendChild(optionAdmin);
+           
+            let temMesaLivre = false;
+
+            // ==========================================
+            // LOGINS EXCLUSIVOS DE FINAL DE FILA (1, 2 E 3)
+            // ==========================================
+            if(!mesasOcupadas.includes('Final de Fila 1')) {
+                let optionFF1 = document.createElement('option');
+                optionFF1.value = 'Final de Fila 1';
+                optionFF1.text = '🚨 FINAL DE FILA 1';
+                selectLugar.appendChild(optionFF1);
+                temMesaLivre = true;
+            }
+
+            if(!mesasOcupadas.includes('Final de Fila 2')) {
+                let optionFF2 = document.createElement('option');
+                optionFF2.value = 'Final de Fila 2';
+                optionFF2.text = '🚨 FINAL DE FILA 2';
+                selectLugar.appendChild(optionFF2);
+                temMesaLivre = true;
+            }
+
+            // NOVA OPÇÃO FINAL DE FILA 3
+            if(!mesasOcupadas.includes('Final de Fila 3')) {
+                let optionFF3 = document.createElement('option');
+                optionFF3.value = 'Final de Fila 3';
+                optionFF3.text = '🚨 FINAL DE FILA 3';
+                selectLugar.appendChild(optionFF3);
+                temMesaLivre = true;
+            }
+
+            // MESAS NORMAIS (1 A 25)
+            for(let i = 1; i <= TOTAL_DE_MESAS; i++) {
+                let nomeMesa = 'Mesa ' + i;
+                if(!mesasOcupadas.includes(nomeMesa)) {
+                    let option = document.createElement('option');
+                    option.value = nomeMesa;
+                    option.text = '🖥️ ' + nomeMesa.toUpperCase();
+                    selectLugar.appendChild(option);
+                    temMesaLivre = true;
+                }
+            }
+
+            if(valorAtual && Array.from(selectLugar.options).some(opt => opt.value === valorAtual)) {
+                selectLugar.value = valorAtual;
+            } else if (!temMesaLivre) {
+                selectLugar.value = "Admin";
+            }
         }
 
         function fazerLogin() {
-            const nome = document.getElementById('inputNome').value.trim().toUpperCase();
-            const lugar = document.getElementById('selectLugar').value;
-            const btn = document.getElementById('btnAcessar');
+            const lugar = document.getElementById('lugarLogin').value;
+            const s = document.getElementById('senhaLogin').value.trim();
+           
+            if(!lugar) return alert("Selecione a mesa ou o acesso Admin.");
+            if(!s) return alert("Digite a senha.");
 
-            if (!nome) return mostrarErro("⚠️ Digite seu nome de operador!");
-            if (!lugar) return mostrarErro("⚠️ Selecione qual o seu posto!");
-
-            btn.innerText = "VERIFICANDO...";
-            btn.disabled = true;
-
-            // Verifica se a mesa já está ocupada
-            db.ref('mesasOcupadas').once('value').then(snapshot => {
-                let ocupadas = snapshot.val() || [];
-               
-                // Admin não trava mesa física
-                if (lugar !== 'Admin' && ocupadas.includes(lugar)) {
-                    btn.innerText = "ACESSAR SISTEMA";
-                    btn.disabled = false;
-                    return mostrarErro(`⚠️ A ${lugar} já está em uso por outro operador!`);
+            if(lugar === 'Admin') {
+                if(s === 'spxadmin123') {
+                    logarComo('ADMIN', 'admin', 'Admin');
+                } else {
+                    alert("Acesso Negado: Senha de Administrador incorreta!");
                 }
+                return;
+            }
 
-                // Libera o acesso e salva os dados na sessão
-                sessionStorage.setItem('usuarioLogado', nome);
-                sessionStorage.setItem('lugarLogado', lugar);
-
-                // Vai para o painel principal
-                window.location.href = "painel.html";
-
-            }).catch(error => {
-                console.error(error);
-                btn.innerText = "ACESSAR SISTEMA";
-                btn.disabled = false;
-                mostrarErro("⚠️ Erro ao conectar com o banco de dados.");
-            });
+            if (s === 'Seagroup.com') {
+                db.ref('mesasOcupadas').once('value').then((snapshot) => {
+                    let atuais = snapshot.val() || [];
+                    if(atuais.includes(lugar)) {
+                        return alert("Este acesso já está em uso por outro operador. Escolha outro.");
+                    }
+                    atuais.push(lugar);
+                    db.ref('mesasOcupadas').set(atuais).then(() => {
+                        logarComo(lugar.toUpperCase(), 'operador', lugar);
+                    });
+                }).catch(() => {
+                    logarComo(lugar.toUpperCase(), 'operador', lugar);
+                });
+            } else {
+                alert("Acesso Negado: Senha da Mesa incorreta!");
+            }
         }
 
-        // Permite logar apertando Enter
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') fazerLogin();
-        });
+        function logarComo(usuario, role, lugar) {
+            sessionStorage.setItem('usuarioLogado', usuario);
+            sessionStorage.setItem('roleLogado', role);
+            sessionStorage.setItem('lugarLogado', lugar);
+            window.location.href = "painel.html";
+        }
     </script>
 </body>
 </html>
